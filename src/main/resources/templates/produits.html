@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymLeaf.org">
+<head>
+<meta charset="utf-8"/>
+<title>produits</title>
+</head>
+<body>
+<table border="1">
+<thead>
+<tr> 
+<th>Désignation</th>
+<th>Prix</th>
+<th>Quantité</th>
+</tr>
+</thead>
+<tbody>
+<tr th:each="p:${listProduits}">
+<td th:text="${p.designation}"></td>
+<td th:text="${p.prix}"></td>
+<td th:text="${p.quantite}"></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>
