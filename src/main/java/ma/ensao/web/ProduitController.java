@@ -27,13 +27,16 @@ public class ProduitController {
 	//@RequestParam demande au dispatcher servlet dutiliser la meth getParam pour trouver parametre  page et laffecter a p
 	public String index(Model model,
 			@RequestParam(name="page",defaultValue="0")int p,
-			@RequestParam(name="size",defaultValue="5")int s){
-		Page <Produit> pageProduits=produitRepository.findAll(PageRequest.of(p,s));
+			@RequestParam(name="size",defaultValue="5")int s,
+			@RequestParam(name="mc",defaultValue="")String mc
+			){
+		Page <Produit> pageProduits=produitRepository.chercher("%"+mc+"%",PageRequest.of(p,s));
 		model.addAttribute("listProduits",pageProduits.getContent());
 		int[] pages=new int[pageProduits.getTotalPages()];
 		model.addAttribute("pages",pages);
 		model.addAttribute("size",s);
 		model.addAttribute("pageCourante",p);
+		model.addAttribute("motCle",mc);		
 		return "produits";
 	}
 }
